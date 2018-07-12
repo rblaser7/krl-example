@@ -71,6 +71,7 @@ Lab 6 Part 3
   rule clear_trips {
       select when car trip_reset
       always {
+          ent:trip_id := 0;
           ent:long_trips := clear_trips;
           ent:all_trips := clear_trips
       }
