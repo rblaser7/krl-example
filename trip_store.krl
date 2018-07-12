@@ -28,7 +28,7 @@ Lab 6 Part 3
                             | short_trips
         };
         check_long = function(id, short_trips) {
-            (ent:long_trips[id] == null) => add_trip(id, short_trips)
+            (ent:long_trips == null || ent:long_trips[id] == null) => add_trip(id, short_trips)
                                         | short_trips_helper(id + 1, short_trips)
         };
         add_trip = function(id, short_trips) {
