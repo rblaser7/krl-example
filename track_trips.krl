@@ -9,7 +9,7 @@ Lab 6 Track Trips
   }
   
   rule process_trip {
-    select when echo message
+    select when car new_trip
     pre {
         mileage = event:attr("mileage")
     }
