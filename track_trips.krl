@@ -29,8 +29,10 @@ Lab 6 Track Trips Part 2
     pre {
         mileage = event:attr("mileage")
     }
-    raise explicit event "found_long_trip"
-        attributes event:attrs if (mileage > long_trip);
+    always {
+      raise explicit event "found_long_trip"
+          attributes event:attrs if (mileage > long_trip);
+      }
     }
 
   rule found_long_trip {
