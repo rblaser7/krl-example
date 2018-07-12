@@ -11,8 +11,6 @@ Lab 6 Part 3
   }
 
   global {
-      trip_id = 0
-
       clear_trips = { "0": { "mileage": "", "timestamp": ""}}
 
       trips = function() {
@@ -26,7 +24,7 @@ Lab 6 Part 3
       short_trips = function() {
         short_trips = {};
         short_trips_helper = function(id, short_trips) {
-            (id < trip_id) => check_long(id, short_trips)
+            (id < ent:trip_id) => check_long(id, short_trips)
                             | short_trips
         };
         check_long = function(id, short_trips) {
@@ -39,13 +37,12 @@ Lab 6 Part 3
         };
         short_trips_helper(0, short_trips)
       }
-
-      
   }
   
   rule collect_trips {
     select when explicit trip_processed
     pre {
+        trip_id = ent:trip_id.defaultsTo(0)
         mileage = event:attr("mileage").klog("our passed in mileage for regular trip: ")
         timestamp = time:now()
     }
@@ -53,13 +50,14 @@ Lab 6 Part 3
         ent:all_trips := ent:all_trips.defaultsTo(clear_trips, "initialized");
         ent:all_trips := ent:all_trips.put([trip_id, "mileage"], mileage)
                                         .put([trip_id, "timestamp"], timestamp);
-        trip_id = trip_id + 1
+        ent:trip_id := trip_id + 1
     }
   }
 
   rule collect_long_trips {
     select when explicit found_long_trip
     pre {
+        trip_id = ent:trip_id
         mileage = event:attr("mileage").klog("our passed in mileage for long trip: ")
         timestamp = time:now()
     }
