@@ -2,7 +2,7 @@ ruleset track_trips {
   meta {
     name "Track Trips"
     description <<
-Lab 6 Track Trips
+Lab 6 Track Trips Part 2
 >>
     author "Ryan Blaser"
     logging on
