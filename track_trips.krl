@@ -34,13 +34,4 @@ Lab 6 Track Trips Part 2
           attributes event:attrs if (mileage > long_trip);
       }
     }
-
-  rule found_long_trip {
-    select when explicit found_long_trip
-    pre {
-        mileage = event:attr("mileage")
-    }
-    send_directive("long_trip", {"length": mileage})
-  }
-  
 }
