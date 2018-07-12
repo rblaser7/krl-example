@@ -6,14 +6,6 @@ Lab 6 Starting Ruleset
 >>
     author "Ryan Blaser"
     logging on
-    shares hello
-  }
-  
-  global {
-    hello = function(obj) {
-      msg = "Hello " + obj;
-      msg
-    }
   }
   
   rule hello {
