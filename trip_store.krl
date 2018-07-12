@@ -11,7 +11,7 @@ Lab 6 Part 3
   }
 
   global {
-      clear_trips = { "0": { "mileage": "", "timestamp": ""}}
+      clear_trips = {}
 
       trips = function() {
           ent:all_trips
