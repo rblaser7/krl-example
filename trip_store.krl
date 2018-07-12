@@ -34,7 +34,7 @@ Lab 6 Part 3
                                         | short_trips_helper(id + 1, short_trips)
         };
         add_trip = function(id, short_trips) {
-            short_trips.put([id], ent:all_trips[id]);
+            short_trips = short_trips.put([id], ent:all_trips[id]);
             short_trips_helper(id + 1, short_trips)
         };
         short_trips_helper(0, short_trips)
@@ -44,7 +44,7 @@ Lab 6 Part 3
   }
   
   rule collect_trips {
-    select when explicit processed_trip
+    select when explicit trip_processed
     pre {
         mileage = event:attr("mileage").klog("our passed in mileage for regular trip: ")
         timestamp = time:now()
